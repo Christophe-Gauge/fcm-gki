@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fcm-gki"
+version = "1.0.0"
+description = "Modified Fuzzy C-Means image segmentation with spatial and G_ki terms; works on OpenCV/NumPy arrays"
+readme = "README.md"
+license = { text = "GPL-3.0-or-later" }  # matches LICENSE; repo README badge says LGPL v3
+authors = [{ name = "Christophe Gauge" }]
+requires-python = ">=3.9"
+dependencies = ["numpy>=1.21"]
+keywords = ["fuzzy c-means", "clustering", "image segmentation", "opencv", "computer vision"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Topic :: Scientific/Engineering :: Image Processing",
+]
+
+[project.optional-dependencies]
+io = ["Pillow>=9"]
+gui = ["Pillow>=9"]          # plus Tkinter, which ships with Python on Windows/macOS
+opencv = ["opencv-python-headless>=4.5"]
+test = ["pytest>=7", "Pillow>=9"]
+
+[project.scripts]
+fcm-gki = "fcm_gki.cli:main"
+
+[project.gui-scripts]
+fcm-gki-gui = "fcm_gki.gui:main"
+
+[project.urls]
+Source = "https://github.com/Christophe-Gauge/FuzzyCMeansClustering"
+Paper = "https://dx.doi.org/10.1109/ISM.2010.53"
+
+[tool.setuptools.packages.find]
+where = ["src"]
